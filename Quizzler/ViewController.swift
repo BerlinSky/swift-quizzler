@@ -35,7 +35,6 @@ class ViewController: UIViewController {
     @IBAction func answerPressed(_ sender: AnyObject) {
         if sender.tag == 1 {
             pickedAnswer = true
-            score = score + 1
         }
         else if sender.tag == 2 {
             pickedAnswer = false
@@ -51,9 +50,9 @@ class ViewController: UIViewController {
       
         questionLabel.text = allQuestions.list[questionNumber].questionText
         scoreLabel.text = "Score: \(score)"
-        progressLabel.text = "\(questionNumber) / \(allQuestions.list.count)"
+        progressLabel.text = "\(questionNumber + 1) / \(allQuestions.list.count)"
   
-        progressBar.frame.size.width = (view.frame.size.width / CGFloat(totalNumberOfQuestions)) * CGFloat(questionNumber)
+        progressBar.frame.size.width = (view.frame.size.width / CGFloat(totalNumberOfQuestions)) * CGFloat(questionNumber + 1)
     }
     
 
@@ -85,6 +84,7 @@ class ViewController: UIViewController {
         let corectAnswer = allQuestions.list[questionNumber].answer
         
         if corectAnswer == pickedAnswer {
+            score = score + 1
             print("You got it right")
         }
         else {
